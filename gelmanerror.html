@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Type M and S errors in small studies !</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-1.1/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+<script src="site_libs/jstat.js"></script>
+<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-inverse  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Anupam Singh</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="about.html">
+    <span class="fa fa-user"></span>
+     
+    About
+  </a>
+</li>
+<li>
+  <a href="https://anupamsingh81.github.io/blog/">
+    <span class="fa fa-rss"></span>
+     
+    Blog
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-bars"></span>
+     
+    Miscellaneous
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="https://www.researchgate.net/profile/Anupam_Singh9">My Research gate profile</a>
+    </li>
+    <li>
+      <a href="https://www.researchgate.net/publication/289519661_Comparison_of_ICH_score_and_other_Machine_algorithms_for_prediction_of_mortality_in_Intracranial_hemorrhage">Machine learning in prediction of outcome in intracranial hemorrhage</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="mailto:anupampom@gmail.com">
+    <span class="fa fa-envelope-o"></span>
+     
+    Contact me
+  </a>
+</li>
+<li>
+  <a href="https://github.com/anupamsingh81">
+    <span class="fa fa-github"></span>
+     
+    GitHub
+  </a>
+</li>
+<li>
+  <a href="https://twitter.com/anupampom">
+    <span class="fa fa-twitter"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="http://stackoverflow.com/users/4954115/anupam?tab=profile">
+    <span class="fa fa-stack-overflow"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Type S and Type M error Calculator</h1>
+<br>
+<br>
+
+</div>
+
+
+<p>Enter Hypothetical True Effect size : <input type="text"  id="A"> </p>
+<br>
+	<p>Enter Standard error found in Study: <input type="text"  id="S"> </p>
+<br>
+	
+    
+    <input type="submit" value="compute" onclick="compute();"> 
+	<input type="button" value="reset" onclick="reset()"  >
+<br>
+	<br>
+<br>
+    <p><b>Interpretation :</b> <br>
+ <span id="output" style="color:blue" > </span></p>
+<br>
+<br>
+<p> <b>References :</b> <a href="http://www.stat.columbia.edu/~gelman/research/published/retropower_final.pdf" > Beyond Power Calculations </a> and <a href="http://www.stat.columbia.edu/~gelman/research/published/francis8.pdf" > Type S errors </a> and <a href="http://andrewgelman.com/2004/12/29/type_1_type_2_t/" > here </a>
+	
+
+
+</div>
+
+<script>
+function reset() {
+    document.getElementById("output").value = "";
+	document.getElementById("A").value = "";
+	document.getElementById("S").value = "";
+document.getElementById("output").innerText = "";
+
+}
+
+
+function compute() {
+ var A = document.getElementById("A").value; 
+var s = document.getElementById("S").value;   
+
+var z =1.96
+
+
+var x =A/s
+
+var q = z-x
+
+
+var phi = 1-jStat.normal.cdf(q,mean=0,sd=1)
+
+var p1 = 100*phi
+
+
+
+var q1 = -z-x
+
+var plo = jStat.normal.cdf(q1,mean=0,sd=1)
+
+var p2 = 100*plo
+
+
+
+var power = (p1+p2)/100
+
+var typeS = p2/power
+
+
+
+
+calls=function() {
+  var args = Array.prototype.slice.call(arguments);
+  var n = args[0];
+  var f = args[1];
+  var params = args.slice(2, args.length);
+  var a=[];
+  for (var i=0; i<n; i++)
+    a.push(f.apply(null, params));
+  return a;	
+}
+
+
+
+    
+ var k = calls(n=10000, jStat.normal.sample, mean=0, sd=1) // simulating 10000 studies, have used normal distribution instead of t distribution used in original code.
+   
+
+
+var estimate = new Array;
+
+for(var i=0;i<k.length;i++){
+   
+  estimate[i] = A-(-s*k[i]) // addition(+)not working in code so using double negative
+ } ;
+
+
+
+
+var estimatex = estimate.filter(function(x){
+  return Math.abs(x)>s*z
+})
+
+var nn =estimatex.length
+
+var kk = jStat.mean(estimatex)
+
+var estimatex2 = new Array ;
+for(var i=0;i<estimatex.length;i++){
+  estimatex2[i] = Math.abs(estimatex[i]) 
+ }
+
+
+
+
+
+
+
+var exaggeration = jStat.mean(estimatex2)/A
+    
+//
+
+var summary = "For a hypothetical true effect size of " + A + " retrieved from external or historical  data, and standard error of " + s + " retrieved from the current study , an unbiased estimate will have " +p1.toFixed(3) + " percent chance of being statistically significantly in the correct direction than of being statistically significant  in the wrong direction ( " +  p2.toFixed(3) + " percent ). Conditional on the estimate being statistically significant, there is a " +typeS.toFixed(3) + " percent chance it will be in the wrong direction (the Type S error rate) and,  the estimated effect is expected to be " + exaggeration.toFixed(3) + " times higher than the true effect (the exaggeration factor) also called as Type M error .The power of current study to detect this hypothetical true effect size is " + 100*power.toFixed(3) + " percent."
+
+document.getElementById("output").innerText = summary;
+
+}
+
+//  add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

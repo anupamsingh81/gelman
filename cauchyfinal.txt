@@ -1,0 +1,72 @@
+var ym=-0.16 //xe
+var sigma=0.21 // sde
+var mu = 0 //xpr
+var tau =0.75 // sdpr
+
+var tau1=tau/Math.sqrt(3)
+
+var tau2=tau/Math.sqrt(5)
+
+
+var t_0= 1 / (tau*Math.sqrt(Math.PI)* 1.772454)* Math.pow(1 + Math.pow((ym-mu),2)/(Math.pow(tau,2)),-1)
+
+
+var t_1= 1/ (tau1*Math.sqrt(3*Math.PI)* 0.8862269)* Math.pow(1 + Math.pow((ym-mu),2)/(3*Math.pow(tau1,2)),-2)
+
+
+var t_2= 2/ (tau2*Math.sqrt(5*Math.PI)* 1.32934)* Math.pow(1 + Math.pow((ym-mu),2)/(5*Math.pow(tau2,2)),-3)
+
+
+
+
+var Cauchy_Normal = Math.pow(sigma,2)-Math.pow(sigma,4)*((Math.pow((ym-mu),2)*Math.pow(t_1,2)/Math.pow(tau,4))/Math.pow(t_0,2)-((Math.pow((ym-mu),2)*3*t_2/Math.pow(tau,4))-(t_1/Math.pow(tau,2)))/t_0)
+var sdpost = Math.sqrt(Cauchy_Normal)
+
+
+var xpost = ym - (2*Math.pow(sigma,2)*(ym-mu))/(Math.pow(tau,2)+Math.pow((ym-mu),2))
+
+
+
+
+
+function robustprior(ym,sigma,mu,tau)
+{
+var tau1=tau/Math.sqrt(3)
+
+var tau2=tau/Math.sqrt(5)
+
+
+var t_0= 1 / (tau*Math.sqrt(Math.PI)* 1.772454)* Math.pow(1 + Math.pow((ym-mu),2)/(Math.pow(tau,2)),-1)
+
+
+var t_1= 1/ (tau1*Math.sqrt(3*Math.PI)* 0.8862269)* Math.pow(1 + Math.pow((ym-mu),2)/(3*Math.pow(tau1,2)),-2)
+
+
+var t_2= 2/ (tau2*Math.sqrt(5*Math.PI)* 1.32934)* Math.pow(1 + Math.pow((ym-mu),2)/(5*Math.pow(tau2,2)),-3)
+
+
+
+
+var Cauchy_Normal = Math.pow(sigma,2)-Math.pow(sigma,4)*((Math.pow((ym-mu),2)*Math.pow(t_1,2)/Math.pow(tau,4))/Math.pow(t_0,2)-((Math.pow((ym-mu),2)*3*t_2/Math.pow(tau,4))-(t_1/Math.pow(tau,2)))/t_0)
+var sdpost = Math.sqrt(Cauchy_Normal)
+
+
+var xpost = ym - (2*Math.pow(sigma,2)*(ym-mu))/(Math.pow(tau,2)+Math.pow((ym-mu),2))
+
+
+var summary = " The xpost is "+xpost+ " The sdpost is "+sdpost+ " . The log is "+Math.exp(xpost)+ " ."
+return summary
+}
+
+var mcid= theta
+var logmcid = Math.log(theta)
+var scalecauchy =  logmcid/Math.tan(Math.PI*(0.025-0.5))
+
+var enthloc = logmcid
+var skeptical= 0 
+
+
+
+
+
+
